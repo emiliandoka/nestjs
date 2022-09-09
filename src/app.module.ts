@@ -8,6 +8,7 @@ import { ConfigModule } from '@nestjs/config';
 //import { AuthControllerfunc } from './userLogin/auth/auth.controller';
 import { AuthMiddleware } from './userLogin/middlewares/auth.middleware';
 import { MiddlewareConsumer } from '@nestjs/common';
+import { ArticleModule } from './article/article.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -27,6 +28,7 @@ import { MiddlewareConsumer } from '@nestjs/common';
 
     UserModule,
     LoginModule,
+    ArticleModule,
   ],
   controllers: [AppController],
   providers: [AppService],

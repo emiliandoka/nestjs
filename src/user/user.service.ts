@@ -1,6 +1,6 @@
 import { createUserDto } from './dto/createUser.dto';
 import { PartialType } from '@nestjs/mapped-types';
-
+import { ExpressRequest } from 'types/expressRequest.interface';
 export class UpdateUserDto extends PartialType(createUserDto) {}
 
 import {
@@ -35,4 +35,21 @@ export class UserService {
     const users = await this.knex.table('users');
     return { users };
   }
+
+ async updateUser(dataToUpdate:any, req : ExpressRequest){
+    const user: any = await this.knex('users')
+  .where({
+    id: req.user.id,
+  })
+  .update(dataToUpdate, Object.keys(dataToUpdate))
+
+  const updated: any = await this.knex('users')
+  .where({
+    id: req.user.id,
+  })
+  
+  return "succes";
+  
+
+ }
 }
